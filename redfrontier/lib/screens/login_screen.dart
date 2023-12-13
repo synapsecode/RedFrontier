@@ -69,7 +69,7 @@ class LoginScreen extends StatelessWidget {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const HomeScreen()));
+                                  builder: (context) => const HomePage()));
                         },
                         child: const Padding(
                           padding: EdgeInsets.symmetric(

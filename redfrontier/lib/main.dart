@@ -14,15 +14,22 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primaryColor: Color(0xFFFF5733),
-        scaffoldBackgroundColor: Color(0xFF330000),
-        colorScheme:
-            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 149, 13, 13)),
+        primaryColor: const Color(0xFFFF5733),
+        scaffoldBackgroundColor: const Color(0xFF330000),
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromARGB(255, 149, 13, 13)),
         textTheme: TextTheme(
           displayLarge: GoogleFonts.orbitron(
               fontSize: 30,
               fontWeight: FontWeight.bold,
-              color: Color(0xFFB24D4D)),
+              color: const Color(0xFFB24D4D)),
+        ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Color.fromARGB(255, 109, 5, 5),
+          selectedItemColor: Color(0xFFFF5733),
+          unselectedItemColor: Color.fromARGB(255, 198, 195, 195),
+          selectedLabelStyle: TextStyle(fontSize: 14),
+          unselectedLabelStyle: TextStyle(fontSize: 14),
         ),
         useMaterial3: true,
       ),
