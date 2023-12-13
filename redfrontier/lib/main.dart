@@ -23,6 +23,11 @@ class MyApp extends StatelessWidget {
               fontSize: 30,
               fontWeight: FontWeight.bold,
               color: const Color(0xFFB24D4D)),
+          titleLarge: TextStyle(
+            color: Color(0xFFFF5733), // Mars Red
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: Color.fromARGB(255, 109, 5, 5),
@@ -31,6 +36,8 @@ class MyApp extends StatelessWidget {
           selectedLabelStyle: TextStyle(fontSize: 14),
           unselectedLabelStyle: TextStyle(fontSize: 14),
         ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+            foregroundColor: const Color(0xFFB24D4D)),
         useMaterial3: true,
       ),
       home: const WelcomeScreen(),
