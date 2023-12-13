@@ -7,6 +7,7 @@ import 'package:redfrontier/screens/maps_screen.dart';
 import 'package:redfrontier/screens/news_screen.dart';
 import 'package:redfrontier/screens/report_screen.dart';
 import 'package:redfrontier/extensions/miscextensions.dart';
+import 'package:redfrontier/screens/resources/dashboard.dart';
 import 'package:redfrontier/services/firebase_auth.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,6 +19,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 1;
+  late GlobalKey<ScaffoldState> _scaffoldKey;
+
+  @override
+  void initState() {
+    super.initState();
+    _scaffoldKey = GlobalKey<ScaffoldState>();
+  }
+
   void onTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -34,15 +43,18 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Scaffold(
+    return Builder(builder: (context) {
+      return Scaffold(
+        key: _scaffoldKey,
         appBar: AppBar(
           leading: Padding(
             padding: const EdgeInsets.only(
               left: 20,
             ),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                _scaffoldKey.currentState?.openDrawer();
+              },
               icon: const Icon(Icons.menu),
               color: const Color(0xFFB24D4D),
             ),
@@ -58,7 +70,7 @@ class _HomePageState extends State<HomePage> {
               }).addRightMargin(20),
               Expanded(child: Container()),
               Icons.message.toIcon(color: Colors.white, size: 28).onClick(() {
-                Navigator.of(context).pushNewPage(AllChatsScreen());
+                Navigator.of(context).pushNewPage(const AllChatsScreen());
               })
             ],
           ),
@@ -69,18 +81,66 @@ class _HomePageState extends State<HomePage> {
           index: _selectedIndex,
           children: _navScreens,
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: onTapped,
-        currentIndex: _selectedIndex,
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.newspaper), label: _title[0]),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: _title[1]),
-          BottomNavigationBarItem(icon: Icon(Icons.map), label: _title[2]),
-          BottomNavigationBarItem(icon: Icon(Icons.note_add), label: _title[3])
-        ],
-      ),
-    );
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: onTapped,
+          currentIndex: _selectedIndex,
+          items: [
+            BottomNavigationBarItem(
+                icon: const Icon(Icons.newspaper), label: _title[0]),
+            BottomNavigationBarItem(
+                icon: const Icon(Icons.home), label: _title[1]),
+            BottomNavigationBarItem(
+                icon: const Icon(Icons.map), label: _title[2]),
+            BottomNavigationBarItem(
+                icon: const Icon(Icons.note_add), label: _title[3])
+          ],
+        ),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Color(0xFFB24D4D),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CircleAvatar(
+                      radius: 40,
+                      backgroundImage:
+                          AssetImage('assets/images/astronautpng1.png'),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      'Your Name',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ListTile(
+                title: const Text('To Do Mission'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: const Text('Dashboard'),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => const MyDashboard())));
+                },
+              ),
+            ],
+          ),
+        ),
+      );
+    });
   }
 }
