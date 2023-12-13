@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neopop/neopop.dart';
+import 'package:redfrontier/screens/home_page.dart';
 import 'package:redfrontier/screens/register_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -63,7 +64,13 @@ class LoginScreen extends StatelessWidget {
                       const SizedBox(height: 20),
                       NeoPopTiltedButton(
                         color: const Color.fromRGBO(255, 235, 52, 1),
-                        onTapUp: () {},
+                        onTapUp: () {
+                          // for now navigates to home page for dev
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const HomeScreen()));
+                        },
                         child: const Padding(
                           padding: EdgeInsets.symmetric(
                             horizontal: 50.0,
