@@ -69,7 +69,9 @@ class _HomePageState extends State<HomePage> {
                 FirebaseAuthService.logout();
               }).addRightMargin(20),
               Expanded(child: Container()),
-              Icons.message.toIcon(color: Colors.white, size: 28).onClick(() {
+              Icons.message
+                  .toIcon(color: Color(0xFFB24D4D), size: 28)
+                  .onClick(() {
                 Navigator.of(context).pushNewPage(const AllChatsScreen());
               })
             ],
