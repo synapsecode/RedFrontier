@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:neopop/neopop.dart';
 import 'package:redfrontier/common/dialogs.dart';
 import 'package:redfrontier/screens/login_screen.dart';
-import 'package:redfrontier/services/firebase_auth.dart';
+import 'package:redfrontier/services/auth/firebase_auth.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});

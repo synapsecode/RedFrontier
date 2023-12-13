@@ -5,7 +5,7 @@ import 'package:redfrontier/extensions/extensions.dart';
 import 'package:redfrontier/main.dart';
 import 'package:redfrontier/models/redfrontier_user.dart';
 import 'package:redfrontier/screens/chat/individual_chat/individual_chat.dart';
-import 'package:redfrontier/services/firestore.dart';
+import 'package:redfrontier/services/firestore/chats.dart';
 import 'package:redfrontier/services/messaging/helpers.dart';
 import 'package:redfrontier/services/messaging/models/chat_engine.dart';
 import 'package:redfrontier/services/messaging/models/chat_entity.dart';
@@ -81,7 +81,7 @@ class _GenericMultiUserSelectorWidgetState
                     width: 300,
                     color: Colors.grey[300],
                     child: FutureBuilder(
-                      future: FirestoreService.searchUserByEmail(query),
+                      future: FirestoreChatService.searchUserByEmail(query),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState == ConnectionState.done) {
                           final x = snapshot.data!

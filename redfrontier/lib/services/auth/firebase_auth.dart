@@ -6,7 +6,7 @@ import 'package:redfrontier/main.dart';
 import 'package:redfrontier/models/redfrontier_user.dart';
 import 'package:redfrontier/screens/home_page.dart';
 import 'package:redfrontier/screens/login_screen.dart';
-import 'package:redfrontier/services/firestore.dart';
+import 'package:redfrontier/services/firestore/chats.dart';
 
 class FirebaseAuthService {
   static signInWithEmail(String email, String password) async {
@@ -15,7 +15,7 @@ class FirebaseAuthService {
         email: email,
         password: password,
       );
-      await FirestoreService.createUser(
+      await FirestoreChatService.createUser(
         RedFrontierUser.fromFBUser(uc.user!),
         "https://i.pinimg.com/736x/dd/f0/11/ddf0110aa19f445687b737679eec9cb2.jpg",
       );

@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:redfrontier/main.dart';
 import 'package:redfrontier/models/redfrontier_user.dart';
-import 'package:redfrontier/services/firestore.dart';
+import 'package:redfrontier/services/firestore/chats.dart';
 
 extension FirebaseCollectionHelpers on CollectionReference {
   Future<bool> exists(String id) async {
@@ -23,7 +23,7 @@ class ChatHelpers {
   static setCurrentlyActiveChatMembers(List memberIds) async {
     Map<String, RedFrontierUser> members = {};
     for (final mid in memberIds) {
-      final u = await FirestoreService.fetchUserByID(mid);
+      final u = await FirestoreChatService.fetchUserByID(mid);
       if (u == null) continue;
       members[mid] = u;
     }

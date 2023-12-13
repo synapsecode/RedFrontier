@@ -7,7 +7,7 @@ import 'package:redfrontier/screens/maps_screen.dart';
 import 'package:redfrontier/screens/news_screen.dart';
 import 'package:redfrontier/screens/report_screen.dart';
 import 'package:redfrontier/extensions/miscextensions.dart';
-import 'package:redfrontier/services/firebase_auth.dart';
+import 'package:redfrontier/services/auth/firebase_auth.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

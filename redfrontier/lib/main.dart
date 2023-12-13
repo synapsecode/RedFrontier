@@ -9,7 +9,7 @@ import 'package:redfrontier/screens/home_page.dart';
 import 'package:redfrontier/screens/login_screen.dart';
 import 'package:redfrontier/screens/welcome_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:redfrontier/services/firebase_auth.dart';
+import 'package:redfrontier/services/auth/firebase_auth.dart';
 
 final gpc = ProviderContainer();
 

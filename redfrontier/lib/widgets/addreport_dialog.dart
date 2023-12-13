@@ -2,6 +2,12 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:redfrontier/common/dialogs.dart';
+import 'package:redfrontier/main.dart';
+import 'package:redfrontier/models/redfrontier_user.dart';
+import 'package:redfrontier/models/reports.dart';
+import 'package:redfrontier/services/firestore/reports.dart';
+import 'package:redfrontier/services/storagr/firebase_storage.dart';
 
 class AddReportDialog extends StatefulWidget {
   const AddReportDialog({super.key});
@@ -12,6 +18,8 @@ class AddReportDialog extends StatefulWidget {
 
 class _AddReportDialogState extends State<AddReportDialog> {
   File? _image;
+  TextEditingController titleC = TextEditingController();
+  TextEditingController descC = TextEditingController();
 
   Future<void> _getImage() async {
     final picker = ImagePicker();
@@ -21,6 +29,29 @@ class _AddReportDialogState extends State<AddReportDialog> {
       setState(() {
         _image = File(pickedFile.path);
       });
+    }
+  }
+
+  _submitReport() async {
+    String? imgURL;
+    if (_image != null) {
+      imgURL = await FirebaseStorageService.uploadImage(_image!);
+      if (imgURL == null) {
+        // return CustomDialogs.showDefaultAlertDialog(
+        //   context,
+        //   contentTitle: 'ImageUploadError',
+        //   contentText: 'unable to upload image',
+        // );
+      }
+      final creator = gpc.read(currentRFUserProvider);
+      final report = Report.fromMap({
+        'media_url': imgURL ?? 'none',
+        'title': titleC.value.text,
+        'description': descC.value.text,
+        'creator_uid': creator!.id,
+      });
+      await FirestoreReportService.createReport(report);
+      Navigator.of(context).pop();
     }
   }
 
@@ -62,6 +93,7 @@ class _AddReportDialogState extends State<AddReportDialog> {
                   labelText: 'Title',
                   border: OutlineInputBorder(),
                 ),
+                controller: titleC,
               ),
               const SizedBox(height: 16),
               TextFormField(
@@ -70,14 +102,13 @@ class _AddReportDialogState extends State<AddReportDialog> {
                   labelText: 'Description',
                   border: OutlineInputBorder(),
                 ),
+                controller: descC,
               ),
             ],
           ),
           actions: [
             TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
+              onPressed: _submitReport,
               child: const Text('Add'),
             ),
             TextButton(
