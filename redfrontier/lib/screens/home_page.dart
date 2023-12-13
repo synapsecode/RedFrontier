@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+
+import 'package:redfrontier/screens/home_screen.dart';
+import 'package:redfrontier/screens/maps_screen.dart';
+import 'package:redfrontier/screens/news_screen.dart';
+import 'package:redfrontier/screens/report_screen.dart';
 import 'package:redfrontier/extensions/miscextensions.dart';
 import 'package:redfrontier/services/firebase_auth.dart';
 
@@ -17,7 +22,13 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  final List<String> _title = ['News', 'Home', 'Map', 'SOS'];
+  final List<String> _title = ['News', 'Home', 'Map', 'Report'];
+  final List<Widget> _navScreens = const [
+    NewsScreen(),
+    HomeScreen(),
+    MapsScreen(),
+    ReportPage()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +41,7 @@ class _HomePageState extends State<HomePage> {
       //   backgroundColor: Colors.transparent,
       //   centerTitle: true,
       // ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.note_add),
-      ),
+
       body: Scaffold(
         appBar: AppBar(
           leading: Padding(
@@ -55,16 +63,21 @@ class _HomePageState extends State<HomePage> {
           centerTitle: true,
           backgroundColor: Colors.transparent,
         ),
+        body: IndexedStack(
+          index: _selectedIndex,
+          children: _navScreens,
+        ),
       ),
 
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTapped,
         currentIndex: _selectedIndex,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: 'News'),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Map'),
-          BottomNavigationBarItem(icon: Icon(Icons.sos), label: 'SOS')
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.newspaper), label: _title[0]),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: _title[1]),
+          BottomNavigationBarItem(icon: Icon(Icons.map), label: _title[2]),
+          BottomNavigationBarItem(icon: Icon(Icons.note_add), label: _title[3])
         ],
       ),
     );
