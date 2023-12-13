@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:redfrontier/extensions/miscextensions.dart';
+import 'package:redfrontier/extensions/navextensions.dart';
+import 'package:redfrontier/screens/chat/all_chats/all_chats.dart';
 import 'package:redfrontier/services/firebase_auth.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,14 +24,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text(
-      //     'Red Frontier',
-      //     style: Theme.of(context).textTheme.displayLarge,
-      //   ),
-      //   backgroundColor: Colors.transparent,
-      //   centerTitle: true,
-      // ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: const Icon(Icons.note_add),
@@ -46,17 +40,25 @@ class _HomePageState extends State<HomePage> {
               color: const Color(0xFFB24D4D),
             ),
           ),
-          title: Text(
-            _title[_selectedIndex],
-            style: Theme.of(context).textTheme.displayLarge,
-          ).onClick(() {
-            FirebaseAuthService.logout();
-          }),
+          title: Row(
+            children: [
+              Expanded(child: Container()),
+              Text(
+                _title[_selectedIndex],
+                style: Theme.of(context).textTheme.displayLarge,
+              ).onClick(() {
+                FirebaseAuthService.logout();
+              }).addRightMargin(20),
+              Expanded(child: Container()),
+              Icons.message.toIcon(color: Colors.white, size: 28).onClick(() {
+                Navigator.of(context).pushNewPage(AllChatsScreen());
+              }),
+            ],
+          ),
           centerTitle: true,
           backgroundColor: Colors.transparent,
         ),
       ),
-
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTapped,
         currentIndex: _selectedIndex,
