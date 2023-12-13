@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "976668415446",
+    "project_id": "redfrontier",
+    "storage_bucket": "redfrontier.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:976668415446:android:19ddcb9ef3413aa0560077",
+        "android_client_info": {
+          "package_name": "com.example.redfrontier"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBqk6w82zRTOoX3sHCfaGBleb7FKI14XY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

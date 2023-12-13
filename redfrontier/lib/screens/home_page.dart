@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:redfrontier/extensions/miscextensions.dart';
+import 'package:redfrontier/services/firebase_auth.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -47,7 +49,9 @@ class _HomePageState extends State<HomePage> {
           title: Text(
             _title[_selectedIndex],
             style: Theme.of(context).textTheme.displayLarge,
-          ),
+          ).onClick(() {
+            FirebaseAuthService.logout();
+          }),
           centerTitle: true,
           backgroundColor: Colors.transparent,
         ),

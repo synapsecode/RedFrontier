@@ -39,6 +39,12 @@ dependencies:
   neopop: ^1.0.2
   easy_sidemenu: ^0.5.0
 
+  # Firebase Deps
+  firebase_core_platform_interface: ^4.8.0 #Prevent FirebaseAppPlatform.verifyExtends errors (NO-WEB)
+  cloud_firestore: ^4.9.1
+  firebase_auth: ^4.9.0
+  firebase_core: ^2.15.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
