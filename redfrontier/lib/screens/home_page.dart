@@ -34,6 +34,16 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Scaffold(
         appBar: AppBar(
+          leading: Padding(
+            padding: const EdgeInsets.only(
+              left: 20,
+            ),
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.menu),
+              color: const Color(0xFFB24D4D),
+            ),
+          ),
           title: Text(
             _title[_selectedIndex],
             style: Theme.of(context).textTheme.displayLarge,
@@ -42,6 +52,7 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Colors.transparent,
         ),
       ),
+
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTapped,
         currentIndex: _selectedIndex,
