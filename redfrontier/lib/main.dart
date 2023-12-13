@@ -1,18 +1,32 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:redfrontier/extensions/miscextensions.dart';
+import 'package:redfrontier/extensions/navextensions.dart';
+import 'package:redfrontier/screens/home_page.dart';
+import 'package:redfrontier/screens/login_screen.dart';
 import 'package:redfrontier/screens/welcome_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:redfrontier/services/firebase_auth.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  await Firebase.initializeApp();
+  runApp(const RedFrontierApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+final navigatorKey = GlobalKey<NavigatorState>();
+
+class RedFrontierApp extends StatelessWidget {
+  const RedFrontierApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      navigatorKey: navigatorKey,
       theme: ThemeData(
         primaryColor: const Color(0xFFFF5733),
         scaffoldBackgroundColor: const Color(0xFF330000),
@@ -40,7 +54,27 @@ class MyApp extends StatelessWidget {
             foregroundColor: const Color(0xFFB24D4D)),
         useMaterial3: true,
       ),
-      home: const WelcomeScreen(),
+      home: const RedFrontierWrapper(),
     );
+  }
+}
+
+class RedFrontierWrapper extends StatefulWidget {
+  const RedFrontierWrapper({super.key});
+
+  @override
+  State<RedFrontierWrapper> createState() => _RedFrontierWrapperState();
+}
+
+class _RedFrontierWrapperState extends State<RedFrontierWrapper> {
+  @override
+  void initState() {
+    FirebaseAuthService.handleAuthChanges();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return CircularProgressIndicator().center();
   }
 }

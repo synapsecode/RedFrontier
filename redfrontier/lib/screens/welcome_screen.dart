@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neopop/neopop.dart';
+import 'package:redfrontier/extensions/miscextensions.dart';
 import 'package:redfrontier/screens/login_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -12,7 +13,7 @@ class WelcomeScreen extends StatelessWidget {
         title: Text(
           'RED FRONTIER',
           style: Theme.of(context).textTheme.displayLarge,
-        ),
+        ).addTopMargin(30),
         backgroundColor: Colors.transparent,
         centerTitle: true,
       ),
@@ -47,7 +48,7 @@ class WelcomeScreen extends StatelessWidget {
                 vertical: 15,
               ),
               child: Text(
-                'Login ->',
+                'Login to RedFrontier',
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: 20,

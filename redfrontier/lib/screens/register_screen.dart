@@ -1,9 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:neopop/neopop.dart';
+import 'package:redfrontier/extensions/common/dialogs.dart';
 import 'package:redfrontier/screens/login_screen.dart';
+import 'package:redfrontier/services/firebase_auth.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
+
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  TextEditingController emailC = TextEditingController();
+  TextEditingController passwordC = TextEditingController();
+  TextEditingController confirmPasswordC = TextEditingController();
+
+  performRegister() {
+    final email = emailC.value.text;
+    final pwd = passwordC.value.text;
+    final cpwd = confirmPasswordC.value.text;
+    if (email.isEmpty || pwd.isEmpty) return;
+    if (cpwd != pwd) {
+      return CustomDialogs.showDefaultAlertDialog(context,
+          contentText: 'passwords do not match',
+          contentTitle: 'Register Error');
+    }
+    FirebaseAuthService.signInWithEmail(
+      email,
+      pwd,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +47,12 @@ class RegisterScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Card(
-            // color: const Color.fromARGB(255, 164, 14, 4),
+            color: const Color.fromARGB(40, 255, 255, 255),
             elevation: 8.0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
             ),
-            child: Padding(
+            child: SingleChildScrollView(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -35,7 +62,7 @@ class RegisterScreen extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .displayLarge!
-                        .copyWith(color: Colors.black, fontSize: 25),
+                        .copyWith(color: Colors.white, fontSize: 25),
                   ),
                   const SizedBox(
                     height: 15,
@@ -46,28 +73,49 @@ class RegisterScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 15),
                   TextFormField(
-                    decoration: const InputDecoration(
-                      hintText: 'Username',
+                    controller: emailC,
+                    decoration: InputDecoration(
+                      hintText: 'email',
+                      hintStyle: TextStyle(
+                        color: Colors.white.withAlpha(100),
+                      ),
+                    ),
+                    style: TextStyle(
+                      color: Colors.white,
                     ),
                   ),
                   const SizedBox(height: 12),
                   TextFormField(
                     obscureText: true,
-                    decoration: const InputDecoration(
-                      hintText: 'Enter New Password',
+                    controller: passwordC,
+                    decoration: InputDecoration(
+                      hintText: 'enter new password',
+                      hintStyle: TextStyle(
+                        color: Colors.white.withAlpha(100),
+                      ),
+                    ),
+                    style: TextStyle(
+                      color: Colors.white,
                     ),
                   ),
                   const SizedBox(height: 12),
                   TextFormField(
                     obscureText: true,
-                    decoration: const InputDecoration(
-                      hintText: 'Re-Enter New Password',
+                    controller: confirmPasswordC,
+                    decoration: InputDecoration(
+                      hintText: 'confirm password',
+                      hintStyle: TextStyle(
+                        color: Colors.white.withAlpha(100),
+                      ),
+                    ),
+                    style: TextStyle(
+                      color: Colors.white,
                     ),
                   ),
                   const SizedBox(height: 20),
                   NeoPopTiltedButton(
                     color: const Color.fromRGBO(255, 235, 52, 1),
-                    onTapUp: () {},
+                    onTapUp: performRegister,
                     child: const Padding(
                       padding: EdgeInsets.symmetric(
                         horizontal: 50.0,
