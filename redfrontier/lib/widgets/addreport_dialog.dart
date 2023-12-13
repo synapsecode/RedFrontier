@@ -32,11 +32,11 @@ class _AddReportDialogState extends State<AddReportDialog> {
               style: Theme.of(context).textTheme.displayLarge),
           content: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               const Text('Add Image:'),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               GestureDetector(
