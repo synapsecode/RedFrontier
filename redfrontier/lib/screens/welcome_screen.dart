@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neopop/neopop.dart';
+import 'package:redfrontier/screens/login_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -30,7 +31,10 @@ class WelcomeScreen extends StatelessWidget {
           const Spacer(),
           NeoPopTiltedButton(
             isFloating: true,
-            onTapUp: () {},
+            onTapUp: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => LoginScreen()));
+            },
             decoration: const NeoPopTiltedButtonDecoration(
               color: Color.fromRGBO(255, 235, 52, 1),
               plunkColor: Color.fromRGBO(255, 235, 52, 1),
