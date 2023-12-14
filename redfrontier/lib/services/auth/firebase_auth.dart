@@ -6,6 +6,7 @@ import 'package:redfrontier/main.dart';
 import 'package:redfrontier/models/redfrontier_user.dart';
 import 'package:redfrontier/screens/home_page.dart';
 import 'package:redfrontier/screens/login_screen.dart';
+import 'package:redfrontier/screens/welcome_screen.dart';
 import 'package:redfrontier/services/firestore/chats.dart';
 
 class FirebaseAuthService {
@@ -59,7 +60,7 @@ class FirebaseAuthService {
       } else {
         gpc.read(currentRFUserProvider.notifier).state = null;
         Navigator.of(navigatorKey.currentState!.context)
-            .replaceWithNewPage(LoginScreen());
+            .replaceWithNewPage(WelcomeScreen());
       }
     });
   }

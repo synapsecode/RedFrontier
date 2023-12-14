@@ -1,3 +1,6 @@
+# 14.12.2023 (firebase-reports) (MANAS) (7:54AM)
+- [feat]: Interactive Map Added
+
 # 14.12.2023 (firebase-reports) (MANAS) (7:30AM)
 - [feat]: Dashboard: Resources and Habitat data are now realtime in nature!
 
