@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:redfrontier/extensions/navextensions.dart';
+import 'package:redfrontier/main.dart';
+import 'package:redfrontier/models/redfrontier_user.dart';
 import 'package:redfrontier/screens/chat/all_chats/all_chats.dart';
-
 import 'package:redfrontier/screens/home_screen.dart';
 import 'package:redfrontier/screens/maps_screen.dart';
 import 'package:redfrontier/screens/news_screen.dart';
 import 'package:redfrontier/screens/report_screen.dart';
 import 'package:redfrontier/extensions/miscextensions.dart';
 import 'package:redfrontier/screens/resources/dashboard.dart';
-import 'package:redfrontier/services/firebase_auth.dart';
+import 'package:redfrontier/services/auth/firebase_auth.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -101,7 +102,7 @@ class _HomePageState extends State<HomePage> {
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
-              const DrawerHeader(
+              DrawerHeader(
                 decoration: BoxDecoration(
                   color: Color(0xFFB24D4D),
                 ),
@@ -115,7 +116,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     SizedBox(height: 10),
                     Text(
-                      'Your Name',
+                      gpc.read(currentRFUserProvider)!.name,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,

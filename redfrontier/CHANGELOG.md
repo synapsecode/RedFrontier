@@ -1,3 +1,6 @@
+# 14.12.2023 (firebase-reports) (MANAS) (7:30AM)
+- [feat]: Dashboard: Resources and Habitat data are now realtime in nature!
+
 # 14.12.2023 (firebase-reports) (MANAS) (6:30AM)
 - [feat]: Streaming support added for Reports
 - [feat]: ImageUpload added for Reports
