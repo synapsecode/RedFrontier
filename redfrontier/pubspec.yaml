@@ -55,7 +55,10 @@ dependencies:
   firebase_core: ^2.15.1
   firebase_storage:
   firebase_app_check:
+  firebase_messaging:
   
+# dependency_overrides:
+
 
 dev_dependencies:
   flutter_test:
