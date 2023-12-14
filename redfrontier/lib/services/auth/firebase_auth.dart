@@ -8,6 +8,7 @@ import 'package:redfrontier/screens/home_page.dart';
 import 'package:redfrontier/screens/login_screen.dart';
 import 'package:redfrontier/screens/welcome_screen.dart';
 import 'package:redfrontier/services/firestore/chats.dart';
+import 'package:redfrontier/services/firestore/dashboard.dart';
 
 class FirebaseAuthService {
   static signInWithEmail(String email, String password) async {
@@ -16,10 +17,13 @@ class FirebaseAuthService {
         email: email,
         password: password,
       );
+      final ru = RedFrontierUser.fromFBUser(uc.user!);
       await FirestoreChatService.createUser(
-        RedFrontierUser.fromFBUser(uc.user!),
+        ru,
         "https://i.pinimg.com/736x/dd/f0/11/ddf0110aa19f445687b737679eec9cb2.jpg",
       );
+      await FirestoreDashboard.createInitialHabitatForUser(ru);
+      await FirestoreDashboard.createInitialResourceForUser(ru);
     } catch (e) {
       print('Exception:signInWithEmail => $e');
       CustomDialogs.showDefaultAlertDialog(
