@@ -36,13 +36,7 @@ class _AddReportDialogState extends State<AddReportDialog> {
     String? imgURL;
     if (_image != null) {
       imgURL = await FirebaseStorageService.uploadImage(_image!);
-      if (imgURL == null) {
-        // return CustomDialogs.showDefaultAlertDialog(
-        //   context,
-        //   contentTitle: 'ImageUploadError',
-        //   contentText: 'unable to upload image',
-        // );
-      }
+
       final creator = gpc.read(currentRFUserProvider);
       final report = Report.fromMap({
         'media_url': imgURL ?? 'none',

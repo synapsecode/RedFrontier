@@ -23,19 +23,24 @@ class _ReportPageState extends State<ReportPage> {
   Widget build(BuildContext context) {
     final uid = gpc.read(currentRFUserProvider)!.id;
     return Scaffold(
-      body: FutureBuilder(
-        future: FirestoreReportService.getMyReports(uid),
+      body: StreamBuilder(
+        stream: FirestoreReportService.getMyReportsAsStream(uid),
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            final data = snapshot.data;
-            if (data == null || data.isEmpty)
-              return Text('No Reports').center();
+          if (snapshot.hasData) {
+            final reports = (snapshot.data!.docs)
+                .map((e) => e.data())
+                .map((e) => Report.fromMap(e as Map<String, dynamic>))
+                .toList();
+            if (reports.isEmpty) {
+              return Text('No Reports to Display');
+            }
             return ListView.builder(
-              itemCount: data.length,
-              itemBuilder: (context, index) => ReportBody(model: data[index]),
+              itemCount: reports.length,
+              itemBuilder: (context, index) =>
+                  ReportBody(model: reports[index]),
             );
           }
-          return CircularProgressIndicator().center();
+          return Text('Unable to Fetch');
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -70,11 +75,13 @@ class ReportBody extends StatelessWidget {
           tileColor: Color(0xFFD2B48C),
           leading: CircleAvatar(
             backgroundImage:
-                model.mediaUrl != 'none' ? AssetImage(model.mediaUrl) : null,
+                model.mediaUrl != 'none' ? NetworkImage(model.mediaUrl) : null,
             radius: 32,
           ),
           trailing: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                FirestoreReportService.deleteReport(model.id);
+              },
               icon: const Icon(
                 Icons.delete,
                 color: Colors.red,

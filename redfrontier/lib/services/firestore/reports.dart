@@ -33,7 +33,16 @@ class FirestoreReportService {
     }
   }
 
-  // Get all reports where creator_uid is myuid
+  static Stream<QuerySnapshot<Object?>> getMyReportsAsStream(String myUid) {
+    return reportsCollection.where('creator_uid', isEqualTo: myUid).snapshots();
+  }
+
+  static Stream<QuerySnapshot<Object?>> getFeedReportsAsStream(String myUid) {
+    return reportsCollection
+        .where('creator_uid', isNotEqualTo: myUid)
+        .snapshots();
+  }
+
   static Future<List<Report>> getMyReports(String myUid) async {
     try {
       QuerySnapshot querySnapshot =

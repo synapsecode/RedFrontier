@@ -18,7 +18,7 @@ class _RepNewsDetailsState extends State<RepNewsDetails> {
           style: Theme.of(context).textTheme.displayLarge),
       content: Column(children: [
         if (widget.report.mediaUrl != 'none')
-          Image.asset(widget.report.mediaUrl),
+          Image.network(widget.report.mediaUrl),
         Text(widget.report.description),
       ]),
     ));
