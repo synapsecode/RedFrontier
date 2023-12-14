@@ -9,6 +9,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        heroTag: 'h1',
         onPressed: () {
           InAppMessagingService.broadcastMessage(
               title: 'HELLLPPP', message: 'SOSOSSS');

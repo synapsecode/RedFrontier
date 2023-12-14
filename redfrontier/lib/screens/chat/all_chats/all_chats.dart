@@ -19,6 +19,7 @@ class AllChatsScreen extends StatelessWidget {
         partOfFragment: partOfFragment,
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: 'h3',
         onPressed: () {
           showDialog(
             barrierColor: Colors.black45,

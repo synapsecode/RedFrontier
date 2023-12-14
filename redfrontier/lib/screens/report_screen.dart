@@ -44,6 +44,7 @@ class _ReportPageState extends State<ReportPage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: 'h2',
         onPressed: _openAddReport,
         child: const Icon(Icons.add),
       ),
