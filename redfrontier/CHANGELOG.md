@@ -1,3 +1,11 @@
+# 14.12.2023 (firebase-reports) (MANAS) (6:30AM)
+- [feat]: Streaming support added for Reports
+- [feat]: ImageUpload added for Reports
+
+# 14.12.2023 (firebase-reports) (MANAS) (4AM)
+ [feat]: Connected Reports with Firebase Backend
+  [feat]: Folder Structural changes
+
 # 14.12.2023 (fusion/main_messaging) (MANAS)
  [feat]: Created a Fusion of Main & Messaging
 

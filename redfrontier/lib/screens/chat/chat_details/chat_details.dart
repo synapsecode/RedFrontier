@@ -7,7 +7,7 @@ import 'package:redfrontier/common/widgets.dart';
 import 'package:redfrontier/extensions/extensions.dart';
 import 'package:redfrontier/main.dart';
 import 'package:redfrontier/models/redfrontier_user.dart';
-import 'package:redfrontier/services/firestore.dart';
+import 'package:redfrontier/services/firestore/chats.dart';
 import 'package:redfrontier/services/messaging/helpers.dart';
 import 'package:redfrontier/services/messaging/models/chat_engine.dart';
 import 'package:redfrontier/services/messaging/models/chat_entity.dart';
@@ -198,7 +198,7 @@ class _ChatDetailsState extends ConsumerState<ChatDetails> {
               //MemberViewerSection
               if (currentChat!.type == 'group')
                 FutureBuilder(
-                  future: FirestoreService.fetchUsersByIDList(
+                  future: FirestoreChatService.fetchUsersByIDList(
                     currentChat!.memberIds.map((x) => x.toString()).toList(),
                   ),
                   builder: (context, snapshot) {

@@ -5,7 +5,7 @@ import 'package:redfrontier/common/dialogs.dart';
 import 'package:redfrontier/main.dart';
 import 'package:redfrontier/models/redfrontier_user.dart';
 
-class FirestoreService {
+class FirestoreChatService {
   static final CollectionReference usersCollection =
       FirebaseFirestore.instance.collection('users');
 
