@@ -1,4 +1,6 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:redfrontier/common/dialogs.dart';
 import 'package:redfrontier/extensions/navextensions.dart';
 import 'package:redfrontier/main.dart';
 import 'package:redfrontier/models/redfrontier_user.dart';
@@ -10,6 +12,7 @@ import 'package:redfrontier/screens/report_screen.dart';
 import 'package:redfrontier/extensions/miscextensions.dart';
 import 'package:redfrontier/screens/resources/dashboard.dart';
 import 'package:redfrontier/services/auth/firebase_auth.dart';
+import 'package:redfrontier/services/fcm.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -26,6 +29,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _scaffoldKey = GlobalKey<ScaffoldState>();
+    InAppMessagingService.startListening(context);
   }
 
   void onTapped(int index) {

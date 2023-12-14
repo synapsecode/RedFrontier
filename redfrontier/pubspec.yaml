@@ -44,6 +44,7 @@ dependencies:
   flutter_riverpod: ^2.4.0
   uuid: ^3.0.7
   intl:
+  http:
   webview_flutter: ^3.0.0
   fl_chart: 0.60.0
 
@@ -56,7 +57,10 @@ dependencies:
   firebase_storage:
   firebase_app_check:
   carousel_slider: ^4.2.1
+  firebase_messaging:
   
+# dependency_overrides:
+
 
 dev_dependencies:
   flutter_test:

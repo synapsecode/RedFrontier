@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:redfrontier/services/fcm.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -8,7 +9,10 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          InAppMessagingService.broadcastMessage(
+              title: 'HELLLPPP', message: 'SOSOSSS');
+        },
         child: const Icon(Icons.sos),
       ),
       body: SingleChildScrollView(
