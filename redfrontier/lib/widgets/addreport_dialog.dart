@@ -102,14 +102,15 @@ class _AddReportDialogState extends State<AddReportDialog> {
           ),
           actions: [
             TextButton(
-              onPressed: _submitReport,
-              child: const Text('Add'),
-            ),
-            TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
               child: const Text('Cancel'),
+            ),
+            TextButton(
+             
+               onPressed: _submitReport,
+              child: const Text('Add'),
             ),
           ]),
     );
